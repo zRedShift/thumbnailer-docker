@@ -3,6 +3,7 @@ FROM golang:1.11.2-alpine3.8
 ARG LIBIMAGEQUANT_VERSION=2.12.2
 ARG VIPS_VERSION=8.7.0
 ARG FFMPEG_VERSION=4.0.3
+ARG MAKEFLAGS="-j8"
 
 RUN 	apk update && \
     	apk upgrade && \
@@ -29,7 +30,7 @@ RUN 	apk update && \
 	./configure --prefix=/usr \
 				--enable-debug=no \
 				--without-python && \
-	make -j9 && \
+	make && \
 	make install && \
 	cd /tmp/ffmpeg-${FFMPEG_VERSION} && \
 	apk add --no-cache yasm && \
@@ -54,7 +55,7 @@ RUN 	apk update && \
 				--enable-openssl \
 				--enable-postproc \
 				--enable-version3 && \
-	make -j9 && \
+	make && \
 	make install && \
 	make distclean &&
 	rm -rf /tmp/libimagequant-${LIBIMAGEQUANT_VERSION} && \
