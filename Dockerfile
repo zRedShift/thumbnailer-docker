@@ -57,7 +57,7 @@ RUN 	apk update && \
 				--enable-version3 && \
 	make && \
 	make install && \
-	make distclean &&
+	make distclean && \
 	rm -rf /tmp/libimagequant-${LIBIMAGEQUANT_VERSION} && \
 	rm -rf /tmp/vips-${VIPS_VERSION} && \
 	rm -rf /tmp/ffmpeg-${FFMPEG_VERSION}
